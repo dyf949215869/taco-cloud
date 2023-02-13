@@ -1,15 +1,17 @@
 package tacos.web;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.Errors;
-import tacos.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import tacos.Order;
 
 import javax.validation.Valid;
+
+
 
 @Slf4j
 @Controller
@@ -20,8 +22,9 @@ public class OrderController {
         model.addAttribute("order", new Order());
         return "orderForm";
     }
-    @PostMapping
+    @PostMapping()
     public String processOrder(@Valid Order order, Errors errors){
+        System.out.println(errors);
         if (errors.hasErrors()){
             return "orderForm";
         }
